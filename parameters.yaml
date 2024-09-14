@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template for defining parameters for secrets
+
+
+Parameters:
+
+  AppTag:
+    Type: String
+    Description: The tag of the application
+    Default: "AppTag"
+  
+  OwnerTag:
+    Type: String
+    Description: The tag of the owner
+    Default: "OwnerTag"
+  
+  EnvironmentTag:
+    Type: String
+    Description: The tag of the environment
+    Default: "EnvironmentTag"
+
+  AppManagerCFNStackKeyTag:
+    Type: String
+    Description: The tag of the application manager CloudFormation stack
+    Default: "AppManagerCFNStackKeyTag"
+  
+
+Resources:
+
+  AppTagParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/cfn/${EnvironmentTag}/AppTag"
+      Type: String
+      Value: !Ref AppTag
+      Description: The tag of the application
+      Tags:
+        - Key: AppManagerCFNStackKeyTag
+          Value: !Ref AppManagerCFNStackKeyTag
+        - Key: Application
+          Value: !Ref AppTag
+        - Key: Environment
+          Value: !Ref EnvironmentTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+  OwnerTagParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/cfn/${EnvironmentTag}/OwnerTag"
+      Type: String
+      Value: !Ref OwnerTag
+      Description: The tag of the owner
+      Tags:
+        - Key: AppManagerCFNStackKeyTag
+          Value: !Ref AppManagerCFNStackKeyTag
+        - Key: Application
+          Value: !Ref AppTag
+        - Key: Environment
+          Value: !Ref EnvironmentTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+  EnvironmentTagParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/cfn/${EnvironmentTag}/EnvironmentTag"
+      Type: String
+      Value: !Ref EnvironmentTag
+      Description: The tag of the environment
+      Tags:
+        - Key: AppManagerCFNStackKeyTag
+          Value: !Ref AppManagerCFNStackKeyTag
+        - Key: Application
+          Value: !Ref AppTag
+        - Key: Environment
+          Value: !Ref EnvironmentTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+  AppManagerCFNStackKeyTagParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/cfn/${EnvironmentTag}/AppManagerCFNStackKeyTag"
+      Type: String
+      Value: !Ref AppManagerCFNStackKeyTag
+      Description: The tag of the application manager CloudFormation stack
+      Tags:
+        - Key: AppManagerCFNStackKeyTag
+          Value: !Ref AppManagerCFNStackKeyTag
+        - Key: Application
+          Value: !Ref AppTag
+        - Key: Environment
+          Value: !Ref EnvironmentTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+Outputs:
+
+  AppTagParameter:
+    Description: The tag of the application
+    Value: !Ref AppTag
+    Export:
+      Name: !Sub "${AWS::StackName}-AppTag"
+
+  OwnerTagParameter:
+    Description: The tag of the owner
+    Value: !Ref OwnerTag
+    Export:
+      Name: !Sub "${AWS::StackName}-OwnerTag"
+
+  EnvironmentTagParameter:
+    Description: The tag of the environment
+    Value: !Ref EnvironmentTag
+    Export:
+      Name: !Sub "${AWS::StackName}-EnvironmentTag"
+
+  AppManagerCFNStackKeyTagParameter:
+    Description: The tag of the application manager CloudFormation stack
+    Value: !Ref AppManagerCFNStackKeyTag
+    Export:
+      Name: !Sub "${AWS::StackName}-AppManagerCFNStackKeyTag"

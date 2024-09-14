@@ -1,0 +1,48 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: 'MyAppParameters'
+
+jobs:
+
+- job: DeployParameters
+  displayName: 'Deploy Parameters'
+
+  steps:
+
+  - task: CloudFormationCreateOrUpdateStack@1
+    displayName: 'Create Parameters Stack For Secrets & Tags'
+    inputs:
+      awsCredentials: 'AWSMRGamingInfraConnection'
+      regionName: '$(ApplicationRegionName)'
+      stackName: '$(ApplicationEnvironment)-$(StackParametersName)'
+      templateSource: 'file'
+      templateFile: 'devops/parameters.yaml'
+      capabilities: 'CAPABILITY_NAMED_IAM'
+      templateParametersSource: 'inline'
+      s3BucketName: '$(InfraBucketName)'
+      rollbackConfiguration: 'DISABLED'
+      on_failure: 'DO_NOTHING'
+      templateParameters: |
+        [
+          {
+            "ParameterKey": "AppTag",
+            "ParameterValue": "$(ApplicationAppTag)"
+          },
+          {
+            "ParameterKey": "OwnerTag",
+            "ParameterValue": "$(ApplicationOwnerTag)"
+          },
+          {
+            "ParameterKey": "EnvironmentTag",
+            "ParameterValue": "$(ApplicationEnvironmentTag)"
+          },
+          {
+            "ParameterKey": "AppManagerCFNStackKeyTag",
+            "ParameterValue": "$(ApplicationManagerCFNStackKeyTag)"
+          }
+        ]
