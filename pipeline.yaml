@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: 'MyBackendVariables'
+- group: 'MyBackendArchetypeVariables'
 
 jobs:
 
@@ -19,12 +19,12 @@ jobs:
     inputs:
       awsCredentials: 'AWSConnectionPipeline'
       regionName: '$(ApplicationRegionName)'
-      stackName: '$(ApplicationEnvironment)-$(StackParametersName)'
+      stackName: '$(ApplicationEnvironmentTag)-$(StackParametersName)'
       templateSource: 'file'
       templateFile: 'params/parameters.yaml'
       capabilities: 'CAPABILITY_NAMED_IAM'
       templateParametersSource: 'inline'
-      s3BucketName: '$(InfraBucketName)'
+      s3BucketName: '$(InfraS3BucketName)'
       rollbackConfiguration: 'DISABLED'
       on_failure: 'DO_NOTHING'
       templateParameters: |

@@ -35,7 +35,7 @@ Resources:
       Value: !Ref AppTag
       Description: The tag of the application
       Tags:
-        - Key: AppManagerCFNStackKeyTag
+        - Key: AppManagerCFNStackKey
           Value: !Ref AppManagerCFNStackKeyTag
         - Key: Application
           Value: !Ref AppTag
@@ -52,7 +52,7 @@ Resources:
       Value: !Ref OwnerTag
       Description: The tag of the owner
       Tags:
-        - Key: AppManagerCFNStackKeyTag
+        - Key: AppManagerCFNStackKey
           Value: !Ref AppManagerCFNStackKeyTag
         - Key: Application
           Value: !Ref AppTag
@@ -69,7 +69,7 @@ Resources:
       Value: !Ref EnvironmentTag
       Description: The tag of the environment
       Tags:
-        - Key: AppManagerCFNStackKeyTag
+        - Key: AppManagerCFNStackKey
           Value: !Ref AppManagerCFNStackKeyTag
         - Key: Application
           Value: !Ref AppTag
@@ -86,7 +86,7 @@ Resources:
       Value: !Ref AppManagerCFNStackKeyTag
       Description: The tag of the application manager CloudFormation stack
       Tags:
-        - Key: AppManagerCFNStackKeyTag
+        - Key: AppManagerCFNStackKey
           Value: !Ref AppManagerCFNStackKeyTag
         - Key: Application
           Value: !Ref AppTag
