@@ -19,7 +19,7 @@ jobs:
     inputs:
       awsCredentials: 'AWSConnectionPipeline'
       regionName: '$(ApplicationRegionName)'
-      stackName: '$(ApplicationEnvironmentTag)-$(StackParametersName)'
+      stackName: '$(ApplicationEnvironment)-$(StackParametersName)'
       templateSource: 'file'
       templateFile: 'params/parameters.yaml'
       capabilities: 'CAPABILITY_NAMED_IAM'

@@ -35,14 +35,10 @@ Resources:
       Value: !Ref AppTag
       Description: The tag of the application
       Tags:
-        - Key: AppManagerCFNStackKey
-          Value: !Ref AppManagerCFNStackKeyTag
-        - Key: Application
-          Value: !Ref AppTag
-        - Key: Environment
-          Value: !Ref EnvironmentTag
-        - Key: Owner
-          Value: !Ref OwnerTag
+        AppManagerCFNStackKey: !Ref AppManagerCFNStackKeyTag
+        Application: !Ref AppTag
+        Environment: !Ref EnvironmentTag
+        Owner: !Ref OwnerTag
 
   OwnerTagParameter:
     Type: AWS::SSM::Parameter
@@ -52,14 +48,10 @@ Resources:
       Value: !Ref OwnerTag
       Description: The tag of the owner
       Tags:
-        - Key: AppManagerCFNStackKey
-          Value: !Ref AppManagerCFNStackKeyTag
-        - Key: Application
-          Value: !Ref AppTag
-        - Key: Environment
-          Value: !Ref EnvironmentTag
-        - Key: Owner
-          Value: !Ref OwnerTag
+        AppManagerCFNStackKey: !Ref AppManagerCFNStackKeyTag
+        Application: !Ref AppTag
+        Environment: !Ref EnvironmentTag
+        Owner: !Ref OwnerTag
 
   EnvironmentTagParameter:
     Type: AWS::SSM::Parameter
@@ -69,14 +61,10 @@ Resources:
       Value: !Ref EnvironmentTag
       Description: The tag of the environment
       Tags:
-        - Key: AppManagerCFNStackKey
-          Value: !Ref AppManagerCFNStackKeyTag
-        - Key: Application
-          Value: !Ref AppTag
-        - Key: Environment
-          Value: !Ref EnvironmentTag
-        - Key: Owner
-          Value: !Ref OwnerTag
+        AppManagerCFNStackKey: !Ref AppManagerCFNStackKeyTag
+        Application: !Ref AppTag
+        Environment: !Ref EnvironmentTag
+        Owner: !Ref OwnerTag
 
   AppManagerCFNStackKeyTagParameter:
     Type: AWS::SSM::Parameter
@@ -86,14 +74,10 @@ Resources:
       Value: !Ref AppManagerCFNStackKeyTag
       Description: The tag of the application manager CloudFormation stack
       Tags:
-        - Key: AppManagerCFNStackKey
-          Value: !Ref AppManagerCFNStackKeyTag
-        - Key: Application
-          Value: !Ref AppTag
-        - Key: Environment
-          Value: !Ref EnvironmentTag
-        - Key: Owner
-          Value: !Ref OwnerTag
+        AppManagerCFNStackKey: !Ref AppManagerCFNStackKeyTag
+        Application: !Ref AppTag
+        Environment: !Ref EnvironmentTag
+        Owner: !Ref OwnerTag
 
 Outputs:
 
