@@ -15,13 +15,13 @@ jobs:
   steps:
 
   - task: CloudFormationCreateOrUpdateStack@1
-    displayName: 'Create Parameters Stack For Secrets & Tags'
+    displayName: 'Create Parameters Stack'
     inputs:
-      awsCredentials: 'AWSMRGamingInfraConnection'
+      awsCredentials: 'AWSConnectionPipeline'
       regionName: '$(ApplicationRegionName)'
       stackName: '$(ApplicationEnvironment)-$(StackParametersName)'
       templateSource: 'file'
-      templateFile: 'devops/parameters.yaml'
+      templateFile: 'params/parameters.yaml'
       capabilities: 'CAPABILITY_NAMED_IAM'
       templateParametersSource: 'inline'
       s3BucketName: '$(InfraBucketName)'
