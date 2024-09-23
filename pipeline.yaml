@@ -46,3 +46,32 @@ jobs:
             "ParameterValue": "$(ApplicationManagerCFNStackKeyTag)"
           }
         ]
+
+  - task: CloudFormationCreateOrUpdateStack@1
+    displayName: 'Create Secrets Stack'
+    inputs:
+      awsCredentials: 'AWSConnectionPipeline'
+      regionName: '$(ApplicationRegionName)'
+      stackName: '$(ApplicationEnvironmentTag)-$(StackParametersName)'
+      templateSource: 'file'
+      templateFile: 'secrets/secrets.yaml'
+      capabilities: 'CAPABILITY_NAMED_IAM'
+      templateParametersSource: 'inline'
+      s3BucketName: '$(InfraS3BucketName)'
+      rollbackConfiguration: 'DISABLED'
+      on_failure: 'DO_NOTHING'
+      templateParameters: |
+        [
+          {
+            "ParameterKey": "StackParametersName",
+            "ParameterValue": "$(ApplicationEnvironment)-$(StackParametersName)"
+          },
+          {
+            "ParameterKey": "DBUserName",
+            "ParameterValue": "$(DBUserName)"
+          },
+          {
+            "ParameterKey": "DBPassword",
+            "ParameterValue": "$(DBPassword)"
+          }
+        ]
