@@ -64,7 +64,7 @@ jobs:
         [
           {
             "ParameterKey": "StackParametersName",
-            "ParameterValue": "$(ApplicationEnvironment)-$(StackParametersName)"
+            "ParameterValue": "$(ApplicationEnvironmentTag)-$(StackParametersName)"
           },
           {
             "ParameterKey": "DBUserName",
